@@ -1,11 +1,13 @@
-package com.bibuat.stepdefinitions;
+package stepdefinitions;
 
 import io.cucumber.java.PendingException;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,12 +28,13 @@ public class LoginStepsDefs {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = getWebDriverWait(driver);
+        driver.manage().window().maximize();
     }
 
     //Homepage Navigation
+
     @Given("I am at the Homepage")
     public void iAmAtTheHomepage() throws InterruptedException {
-        driver.manage().window().maximize();
         driver.get(UAT_WEBSITE_LINK);
         Thread.sleep(3000);
     }
@@ -101,5 +104,11 @@ public class LoginStepsDefs {
     public void thePromptOfNonRegisteredEmailWillShow() {
         WebElement prompt = getElementWithPolling(wait, By.cssSelector(".alertShowRegister .el-dialog__header"));
         prompt.click();
+    }
+
+    @And("I quit the Driver")
+    public void iQuitTheDriver() {
+        // Quit the driver
+        driver.quit();
     }
 }

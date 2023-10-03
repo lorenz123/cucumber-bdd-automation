@@ -11,6 +11,7 @@ Feature: Home page to Login
     And Click the hidden eye button
     When I will click the Login button
     Then Gee-test will prompt
+    And I quit the Driver
     Examples:
       | email                      | password         |
       | bibvip.mananabas@gmail.com | Admin@1234567890 |
