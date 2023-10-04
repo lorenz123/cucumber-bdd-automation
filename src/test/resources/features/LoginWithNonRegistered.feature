@@ -1,3 +1,4 @@
+@login
 Feature: Home page to Login
 
   Background:
