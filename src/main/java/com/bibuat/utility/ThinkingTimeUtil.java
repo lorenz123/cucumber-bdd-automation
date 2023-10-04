@@ -1,5 +1,6 @@
 package com.bibuat.utility;
 
+import com.bibuat.consts.ElementType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,5 +21,16 @@ public class ThinkingTimeUtil {
 
     public static WebDriverWait getWebDriverWait(WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(WAITING_TIME));
+    }
+
+    public static By getBy(String path, ElementType type) {
+        return switch (type) {
+            case ID -> By.id(path);
+            case NAME -> By.name(path);
+            case X_PATH -> By.xpath(path);
+            case TAG_NAME -> By.tagName(path);
+            case CSS_SELECTOR -> By.cssSelector(path);
+            default -> throw new IllegalArgumentException();
+        };
     }
 }
